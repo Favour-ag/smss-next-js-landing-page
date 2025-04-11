@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,7 @@ const Navbar = () => {
             <a
               href={item.href}
               className={`${
-                pathname === item.href
+                usePathname === item.href
                   ? "text-[#F97314] font-bold"
                   : "text-black hover:text-[#F97314]"
               }`}
