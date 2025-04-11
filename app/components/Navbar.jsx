@@ -1,13 +1,12 @@
 "use client";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FiMenu, FiX } from "react-icons/fi";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-  const pathname = location.pathname;
+  const pathname = usePathname();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -20,7 +19,7 @@ const Navbar = () => {
     <nav className="fixed w-full bg-transparent flex justify-between items-center z-50 px-6 md:px-12 py-6">
       {/* Logo */}
       <div>
-        <Link to="/">
+        <Link href="/">
           <img src="" alt="Logo" />
         </Link>
       </div>
@@ -29,16 +28,16 @@ const Navbar = () => {
       <ul className="hidden md:flex space-x-12 border border-white rounded-md px-4 py-2">
         {navLinks.map((item) => (
           <li key={item.href}>
-            <a
+            <Link
               href={item.href}
               className={`${
-                usePathname === item.href
+                pathname === item.href
                   ? "text-[#F97314] font-bold"
                   : "text-black hover:text-[#F97314]"
               }`}
             >
               {item.name}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -60,7 +59,7 @@ const Navbar = () => {
         } flex flex-col items-center py-6 space-y-4 md:hidden border-t border-gray-300`}
       >
         {navLinks.map((item) => (
-          <a
+          <Link
             key={item.href}
             href={item.href}
             className={`${
@@ -69,13 +68,13 @@ const Navbar = () => {
             onClick={() => setIsOpen(false)}
           >
             {item.name}
-          </a>
+          </Link>
         ))}
       </div>
 
       {/* Contact Button */}
       <Link
-        to="/contact"
+        href="/contact"
         className="hidden md:block bg-[#F97314] hover:bg-orange-500 text-white px-4 py-2 rounded-md"
       >
         Contact Us
