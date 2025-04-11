@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
